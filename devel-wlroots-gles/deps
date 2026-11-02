@@ -1,0 +1,11 @@
+devel-wayland
+devel-wayland-protocols
+devel-libdrm
+devel-pixman
+devel-libxkbcommon
+devel-libinput
+devel-libseat
+devel-libdisplay-info
+devel-libudev-zero
+devel-meson
+skp/devel-mesa

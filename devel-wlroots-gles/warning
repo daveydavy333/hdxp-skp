@@ -1,0 +1,5 @@
+SKUNKPORT: replaces the wlroots files installed by devel-wlroots (same prefix, same
+version) with a build that includes the GLES2 renderer. dwl does not need rebuilding.
+Needs skp/devel-mesa. Software rendering (softpipe) is slower than pixman and wlroots
+refuses it unless WLR_RENDERER_ALLOW_SOFTWARE=1 is set. Real acceleration needs a
+virtio GPU with 3D in the VM. To go back: hdx i -f devel-wlroots

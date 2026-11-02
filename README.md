@@ -8,7 +8,7 @@ Install one with the skp/ prefix:
 
     hdx i skp/devel-mesa
 
-Layout matches hdxp: `pkgs/<class>-<name>/` with make.sh, deps, info, and an extra
+Each port is a folder `<class>-<name>/` at the root of this repo (a pkgs/ folder also works) with make.sh, deps, info, and an extra
 `warning` file shown before the build starts.
 
 Rules:

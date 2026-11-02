@@ -1,0 +1,4 @@
+wlroots with the GLES2 renderer enabled, built against Mesa. Same version as devel-wlroots (0.20.2), so dwl keeps working without a rebuild. The pixman renderer stays available.
+upstream: https://gitlab.freedesktop.org/wlroots/wlroots
+license: MIT
+ported to hdxp by davy

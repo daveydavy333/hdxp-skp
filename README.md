@@ -16,4 +16,4 @@ Rules:
 - install markers are written as skp-<class>-<name> in /hdxp/installed
 - sources go in /hdxp/src/skp-<class>-<name>-src
 
-Cloned to /hdxp/skp from https://github.com/daveydavy333/hdxp-skp
+Cloned to /hdxp/skp from https://github.com/daveydavy333/skp

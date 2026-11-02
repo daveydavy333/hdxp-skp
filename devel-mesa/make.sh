@@ -7,9 +7,9 @@ cd "$SRC"
 [ -f "$TARBALL" ] || curl -fL -o "$TARBALL" "https://archive.mesa3d.org/$TARBALL"
 echo "$SHA256  $TARBALL" | sha256sum -c -
 [ -d "mesa-$VER" ] || tar xf "$TARBALL"
-# mesa's code generators need the python modules mako and pyyaml
+# mesa's code generators need the python modules mako, pyyaml and packaging
 [ -d pyenv ] || python3 -m venv pyenv
-./pyenv/bin/python -m pip install Mako==1.3.10 PyYAML==6.0.3
+./pyenv/bin/python -m pip install Mako==1.3.10 PyYAML==6.0.3 packaging==25.0
 PATH="$SRC/pyenv/bin:$PATH"
 export PATH
 cd "mesa-$VER"

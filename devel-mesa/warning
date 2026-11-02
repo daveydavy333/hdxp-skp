@@ -1,0 +1,3 @@
+SKUNKPORT: experimental. Mesa takes a long build, downloads Python modules with pip,
+and renders in software (softpipe is far slower than the pixman renderer).
+No GPU driver for real hardware yet (needs LLVM). Unsupported; may break.

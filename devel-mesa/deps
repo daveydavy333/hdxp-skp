@@ -1,0 +1,10 @@
+devel-meson
+devel-samurai
+devel-pkgconf
+devel-python3
+devel-flex
+devel-libdrm
+devel-wayland
+devel-wayland-protocols
+devel-expat
+devel-zlib

@@ -1,4 +1,4 @@
-Mesa, the open source OpenGL, GLES and EGL implementation. This builds software rendering (softpipe) and virgl only, for Wayland, without LLVM.
+Mesa, the open source OpenGL, GLES and EGL implementation. This skunkport builds software rendering (softpipe) and virgl only, for Wayland, without LLVM.
 upstream: https://www.mesa3d.org
 license: MIT
 ported to hdxp by davy

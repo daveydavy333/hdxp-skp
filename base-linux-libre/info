@@ -1,0 +1,4 @@
+GNU Linux-libre 6.18.55-gnu: the Linux kernel with the non-free firmware loaders and binary blobs removed, for hardware that works without non-free firmware. same minimal config as base-kernel (no initramfs, so the root filesystem, virtio, usb, mmc, nvme, framebuffer console, intel graphics and touchpad drivers are built in), plus the ath9k wifi driver. installs /boot/vmlinuz-libre, a versioned copy and its modules in /lib/modules/6.18.55-gnu, and leaves base-kernel's /boot/vmlinuz alone. hardware that needs firmware blobs (iwlwifi, ath10k, amdgpu) does not work with it.
+upstream: https://www.gnu.org/software/linux-libre/
+license: GPL-2.0-only
+ported to hdxp by davy

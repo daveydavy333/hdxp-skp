@@ -1,0 +1,8 @@
+this builds GNU Linux-libre, a kernel that refuses to load non-free firmware. on hardware that needs it (intel wifi, atheros ath10k wifi, amd graphics) wifi and gpu acceleration will not work with this kernel. it is installed next to your normal kernel as /boot/vmlinuz-libre and /boot/vmlinuz is not touched. add a second boot entry for it, for example in limine.conf:
+
+    /HDXI libre
+        protocol: linux
+        path: boot():/vmlinuz-libre
+        cmdline: (same as your normal entry)
+
+or a second menuentry in grub.cfg with `linux /vmlinuz-libre ...`. the kernel build takes a while.

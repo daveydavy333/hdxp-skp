@@ -1,0 +1,4 @@
+Hyprlang, the configuration language parser library of the Hypr* projects.
+upstream: https://github.com/hyprwm/hyprlang
+license: LGPL-3.0
+ported to hdxp by davy

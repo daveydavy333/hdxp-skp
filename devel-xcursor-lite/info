@@ -1,0 +1,4 @@
+X11-free build of libXcursor 1.2.3: only the cursor file and theme loading code (file.c and library.c), no Display, Xrender or Xfixes functions. Lets Hyprland build without porting any X libraries.
+upstream: https://gitlab.freedesktop.org/xorg/lib/libxcursor
+license: HPND-sell-variant
+ported to hdxp by davy

@@ -1,0 +1,4 @@
+Hyprcursor, the Hyprland cursor theme format library and hyprcursor-util.
+upstream: https://github.com/hyprwm/hyprcursor
+license: BSD-3-Clause
+ported to hdxp by davy

@@ -1,0 +1,4 @@
+SKUNKPORT: experimental. Hyprland needs working GLES3 (Mesa with a real GPU driver; softpipe and virgl are
+not meant for running it), so build it anywhere but test it on real hardware. The build is very heavy
+(C++26, large templates): about 2 GB of RAM per job, so the default is 2 jobs (HDX_JOBS to change).
+XWayland, systemd and hyprpm are off, and there is no X11 support at all. Unsupported; may break.

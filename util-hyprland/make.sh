@@ -1,0 +1,30 @@
+SRC="${HDX_SRC:-/hdxp/src/skp-util-hyprland-src}"
+# Hyprland v0.56.2
+COMMIT=efb50993780079460b0cbed1363e2166a2de1d9f
+# glaze v7.2.0 (header-only JSON library, normally fetched by Hyprland's cmake at configure time)
+GLAZE_COMMIT=b518eec7a22e56ffa238b072c07f47efa7cea97f
+# fail early, before the long clone and build
+pkg-config --atleast-version=1.11.0 xkbcommon || { echo "Hyprland needs xkbcommon >= 1.11"; exit 1; }
+pkg-config --atleast-version=1.22.91 wayland-server || { echo "Hyprland needs wayland-server >= 1.22.91"; exit 1; }
+mkdir -p "$SRC"
+cd "$SRC"
+[ -d glaze ] || git clone https://github.com/stephenberry/glaze
+git -C glaze fetch --tags
+git -C glaze checkout -f "$GLAZE_COMMIT"
+[ "$(git -C glaze rev-parse HEAD)" = "$GLAZE_COMMIT" ] || { echo "glaze commit mismatch"; exit 1; }
+[ -d Hyprland ] || git clone https://github.com/hyprwm/Hyprland
+cd Hyprland
+git fetch --tags
+git checkout -f "$COMMIT"
+[ "$(git rev-parse HEAD)" = "$COMMIT" ] || { echo "commit mismatch"; exit 1; }
+# hyprland-protocols and udis86 are git submodules, pinned by this commit
+git submodule update --init subprojects/hyprland-protocols subprojects/udis86 || { echo "submodule update failed"; exit 1; }
+rm -rf build
+cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_INSTALL_LIBDIR=lib -DCMAKE_BUILD_TYPE=Release \
+  -DNO_XWAYLAND=1 -DNO_SYSTEMD=1 -DNO_HYPRPM=1 \
+  -DFETCHCONTENT_SOURCE_DIR_GLAZE="$SRC/glaze" -DFETCHCONTENT_FULLY_DISCONNECTED=ON \
+  -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+cmake --build build -j"${HDX_JOBS:-2}"
+if [ "$(id -u)" -eq 0 ]; then SU=""; else SU=doas; fi
+$SU cmake --install build
+/usr/local/bin/Hyprland --version || { echo "Hyprland does not run"; exit 1; }

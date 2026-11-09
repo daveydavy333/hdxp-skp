@@ -1,0 +1,4 @@
+hyprwayland-scanner, a Wayland protocol scanner that generates C++ code (build tool for aquamarine and Hyprland).
+upstream: https://github.com/hyprwm/hyprwayland-scanner
+license: BSD-3-Clause
+ported to hdxp by davy

@@ -1,0 +1,4 @@
+Aquamarine, the rendering backend library of Hyprland (DRM, Wayland and headless backends).
+upstream: https://github.com/hyprwm/aquamarine
+license: BSD-3-Clause
+ported to hdxp by davy

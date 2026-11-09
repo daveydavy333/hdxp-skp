@@ -1,4 +1,4 @@
-Hyprwire 0.3.1, the wire protocol library of the Hypr* projects, with hyprwire-scanner
+Hyprwire 0.3.1, the wire protocol library of the Hypr* projects, with hyprwire-scanner (needed by hyprctl).
 upstream: https://github.com/hyprwm/hyprwire
 license: BSD-3-Clause
 ported to hdxp by davy

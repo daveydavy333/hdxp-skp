@@ -1,0 +1,4 @@
+Hyprgraphics, image and graphics helper library of the Hypr* projects (JPEG, WebP, PNG, SVG).
+upstream: https://github.com/hyprwm/hyprgraphics
+license: BSD-3-Clause
+ported to hdxp by davy

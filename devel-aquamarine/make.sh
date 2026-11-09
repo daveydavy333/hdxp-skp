@@ -6,8 +6,11 @@ cd "$SRC"
 [ -d aquamarine ] || git clone https://github.com/hyprwm/aquamarine
 cd aquamarine
 git fetch --tags
-git checkout "$COMMIT"
+git checkout -f "$COMMIT"
 [ "$(git rev-parse HEAD)" = "$COMMIT" ] || { echo "commit mismatch"; exit 1; }
+# our mesa has no glvnd, so there is no libOpenGL and no OpenGL::OpenGL target: link the GLES3 one instead
+sed -i 's/OpenGL::EGL OpenGL::OpenGL PkgConfig::deps/OpenGL::EGL OpenGL::GLES3 PkgConfig::deps/' CMakeLists.txt
+grep -q 'OpenGL::EGL OpenGL::GLES3 PkgConfig::deps' CMakeLists.txt || { echo "aquamarine OpenGL patch failed"; exit 1; }
 rm -rf build
 cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_INSTALL_LIBDIR=lib -DCMAKE_BUILD_TYPE=Release \
   -DCMAKE_POLICY_VERSION_MINIMUM=3.5

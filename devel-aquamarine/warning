@@ -1,2 +1,2 @@
 SKUNKPORT: experimental. Part of the Hyprland stack, pinned to the commit Hyprland v0.56.2 was released with.
-Built for Hyprland only. Unsupported; may break.
+Patched to link the GLES3 target, because skp/devel-mesa is built without glvnd. Unsupported; may break.

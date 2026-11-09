@@ -1,0 +1,2 @@
+SKUNKPORT: experimental. NOT the real libXcursor: it installs libXcursor.so and xcursor.pc but only the X-free image and theme
+loading API. Do not install it together with a real X stack (libXcursor would conflict). Unsupported.

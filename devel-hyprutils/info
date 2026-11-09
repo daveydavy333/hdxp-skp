@@ -1,0 +1,4 @@
+Hyprutils, small C++ utility library used by the Hypr* projects.
+upstream: https://github.com/hyprwm/hyprutils
+license: BSD-3-Clause
+ported to hdxp by davy

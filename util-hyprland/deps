@@ -24,3 +24,5 @@ devel-pango
 devel-pixman
 devel-libdrm
 devel-glib
+skp/devel-hyprwire
+devel-readline

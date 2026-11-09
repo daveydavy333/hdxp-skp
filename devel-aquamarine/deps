@@ -1,0 +1,13 @@
+devel-cmake
+skp/devel-hyprwayland-scanner
+skp/devel-hyprutils
+skp/devel-mesa
+devel-libseat
+devel-libinput
+devel-wayland
+devel-wayland-protocols
+devel-pixman
+devel-libdrm
+sys-eudev
+devel-libdisplay-info
+misc-hwdata

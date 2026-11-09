@@ -1,0 +1,4 @@
+Hyprland 0.56.2, a dynamic tiling Wayland compositor. Built without XWayland, systemd and hyprpm.
+upstream: https://github.com/hyprwm/Hyprland
+license: BSD-3-Clause
+ported to hdxp by davy

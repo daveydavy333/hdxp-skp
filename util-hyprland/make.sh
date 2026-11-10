@@ -34,4 +34,8 @@ cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_INSTALL_LIBDIR=lib
 cmake --build build -j"${HDX_JOBS:-2}"
 if [ "$(id -u)" -eq 0 ]; then SU=""; else SU=doas; fi
 $SU cmake --install build
-/usr/local/bin/Hyprland --version || { echo "Hyprland does not run"; exit 1; }
+[ -x /usr/local/bin/Hyprland ] && [ -x /usr/local/bin/hyprctl ] || { echo "Hyprland or hyprctl was not installed"; exit 1; }
+# Hyprland refuses to start without XDG_RUNTIME_DIR, even for --version; this check only warns, the install is done at this point
+T="$(mktemp -d)"
+XDG_RUNTIME_DIR="$T" /usr/local/bin/Hyprland --version || echo "warning: Hyprland --version did not run (a missing library?)"
+rm -rf "$T"

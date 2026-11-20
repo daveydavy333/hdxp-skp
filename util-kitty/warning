@@ -1,0 +1,4 @@
+SKUNKPORT: experimental, untested on HDXI. Wayland only (the X11 backend is patched out).
+Needs the mesa skunkport (software rendering or virgl only, no real GPU driver yet), Go
+(devel-go, about 70 MB download) and libcrypto development files. The build downloads Go
+modules from the network and takes a long time. Unsupported; may break.

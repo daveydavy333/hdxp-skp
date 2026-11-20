@@ -1,0 +1,16 @@
+devel-go
+devel-python3
+devel-ncurses
+skp/devel-mesa
+devel-wayland
+devel-wayland-protocols
+devel-libxkbcommon
+util-dbus
+devel-harfbuzz
+devel-freetype
+devel-fontconfig
+devel-libpng
+devel-lcms2
+devel-zlib
+devel-xxhash
+devel-simde

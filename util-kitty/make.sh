@@ -34,6 +34,27 @@ grep -q "'cocoa' if is_macos else 'wayland'" setup.py
 # on Wayland glfw loads libEGL at runtime and kitty gets its GL functions through it
 sed -i "s/pkg_config('gl', '--libs')/[]/" setup.py
 grep -qF "is_macos else []" setup.py
+# this python has no _bz2 module (devel-python3 is built without libbz2). gen/go_code.py only uses bz2 to compress
+# data that gets embedded in the go binaries, so use zlib on both sides: python writes it, tools/utils/embed.go reads it
+python3 - <<'PY'
+p = 'gen/go_code.py'
+s = open(p).read()
+if 'import bz2' in s:
+    assert 'bz2.compress(data)' in s
+    s = s.replace('import bz2', 'import zlib', 1).replace('bz2.compress(data)', 'zlib.compress(data, 9)')
+    open(p, 'w').write(s)
+p = 'tools/utils/embed.go'
+s = open(p).read()
+if 'compress/bzip2' in s:
+    a = '\tr := bzip2.NewReader(bytes.NewReader(compressed[4:]))\n'
+    b = '\treturn bzip2.NewReader(bytes.NewReader(UnsafeStringToBytes(raw)[4:]))\n'
+    assert a in s and b in s
+    s = s.replace('"compress/bzip2"', '"compress/zlib"')
+    s = s.replace(a, '\tr, zerr := zlib.NewReader(bytes.NewReader(compressed[4:]))\n\tif zerr != nil {\n\t\tpanic(zerr)\n\t}\n')
+    s = s.replace(b, '\tr, zerr := zlib.NewReader(bytes.NewReader(UnsafeStringToBytes(raw)[4:]))\n\tif zerr != nil {\n\t\tpanic(zerr)\n\t}\n\treturn r\n')
+    assert 'bzip2' not in s
+    open(p, 'w').write(s)
+PY
 # go downloads kitty's modules on the first build, so this needs network
 GOPATH="$SRC/gopath"
 GOCACHE="$SRC/gocache"

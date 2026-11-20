@@ -6,6 +6,7 @@ devel-wayland
 devel-wayland-protocols
 devel-libxkbcommon
 util-dbus
+devel-cairo
 devel-harfbuzz
 devel-freetype
 devel-fontconfig

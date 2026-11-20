@@ -5,10 +5,15 @@ TARBALL="kitty-$VER.tar.xz"
 NF_VER=v3.5.1
 NF_SHA256=01172f37db8543edb102e5cb5c64101c9f4686630804d49b419aa07b23a69996
 NF_TARBALL=NerdFontsSymbolsOnly.tar.xz
-# fail early with a clear message instead of deep inside setup.py
-for m in libcrypto gl egl wayland-egl wayland-client xkbcommon harfbuzz lcms2 libxxhash; do
-  pkg-config --exists "$m" || { echo "util-kitty: pkg-config module $m not found" >&2; exit 1; }
+# fail early and list everything that is missing, not just the first module
+MISSING=""
+for m in libcrypto cairo-fc wayland-client wayland-cursor wayland-scanner wayland-protocols xkbcommon dbus-1 harfbuzz lcms2 libpng libxxhash; do
+  pkg-config --exists "$m" || MISSING="$MISSING $m"
 done
+if [ -n "$MISSING" ]; then
+  echo "util-kitty: pkg-config modules not found:$MISSING" >&2
+  exit 1
+fi
 mkdir -p "$SRC"
 cd "$SRC"
 [ -f "$TARBALL" ] || curl -fL -o "$TARBALL" "https://github.com/kovidgoyal/kitty/releases/download/v$VER/$TARBALL"
@@ -25,6 +30,10 @@ chmod 644 fonts/SymbolsNerdFontMono-Regular.ttf
 # Wayland only: drop the X11 backend from the glfw build (X11 libraries are not on HDXI)
 sed -i "s/'cocoa' if is_macos else 'x11 wayland'/'cocoa' if is_macos else 'wayland'/" setup.py
 grep -q "'cocoa' if is_macos else 'wayland'" setup.py
+# no gl.pc here (mesa is built without glx/glvnd, so there is no libGL): kitty only uses it to add -lGL.
+# on Wayland glfw loads libEGL at runtime and kitty gets its GL functions through it
+sed -i "s/pkg_config('gl', '--libs')/[]/" setup.py
+grep -qF "is_macos else []" setup.py
 # go downloads kitty's modules on the first build, so this needs network
 GOPATH="$SRC/gopath"
 GOCACHE="$SRC/gocache"

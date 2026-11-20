@@ -1,6 +1,6 @@
 SRC="${HDX_SRC:-/hdxp/src/skp-util-kitty-src}"
-VER=0.51.0
-SHA256=084807db816a3de9f1a253eff232f17fe9f76ccd77da8101511f830431097ecf
+VER=0.48.2
+SHA256=792a2bbde715bb26839677875a44202f1c30e91a20351842e0a61b5c6a1e666e
 TARBALL="kitty-$VER.tar.xz"
 NF_VER=v3.5.1
 NF_SHA256=01172f37db8543edb102e5cb5c64101c9f4686630804d49b419aa07b23a69996
@@ -55,6 +55,8 @@ if 'compress/bzip2' in s:
     assert 'bzip2' not in s
     open(p, 'w').write(s)
 PY
+# go.mod names a newer minor toolchain than the one devel-go ships; GOTOOLCHAIN=local only needs the "go 1.26.0" line
+sed -i '/^toolchain /d' go.mod
 # go downloads kitty's modules on the first build, so this needs network
 GOPATH="$SRC/gopath"
 GOCACHE="$SRC/gocache"

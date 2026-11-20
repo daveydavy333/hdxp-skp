@@ -1,4 +1,6 @@
-SKUNKPORT: experimental, untested on HDXI. Wayland only (the X11 backend is patched out) and
-linked without libGL: it needs the mesa skunkport at runtime for EGL (software rendering or
-virgl, or whatever GL your mesa build supports). Needs Go (devel-go, about 70 MB download).
-The build downloads Go modules from the network and takes a long time. Unsupported; may break.
+SKUNKPORT: experimental, untested on HDXI. Pinned to kitty 0.48.2: newer releases (0.49+) need the
+slang shader compiler (slangc), which is not available on HDXI. Wayland only (the X11 backend is
+patched out) and linked without libGL: it needs the mesa skunkport at runtime for EGL (software
+rendering or virgl, or whatever GL your mesa build supports). Needs Go (devel-go, about 70 MB
+download). The build downloads Go modules from the network and takes a long time. Unsupported;
+may break.

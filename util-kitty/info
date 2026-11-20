@@ -1,0 +1,4 @@
+kitty: fast, feature-rich, GPU-based terminal emulator. This skunkport builds the Wayland backend only (no X11) and needs OpenGL from the mesa skunkport.
+upstream: https://sw.kovidgoyal.net/kitty/
+license: GPL-3.0-only
+ported to hdxp by davy
